@@ -58,16 +58,35 @@ Since clustering is performed across 3 dimensions (Age, Income, Spending), visua
 
 ---
 
-## 4. Usage & Future Application
+## 4. Interactive Desktop GUI Application
+
+To make predictions easily accessible to non-technical users, a standalone desktop Graphical User Interface (GUI) was developed using `tkinter` and `matplotlib`.
+
+### GUI Dashboard
+![GUI App Dashboard](guiAppDash.png)
+
+### How to Use the App
+1. **Launch the application** by running the following command in your terminal:
+   ```bash
+   python gui_app.py
+   ```
+2. **Enter Customer Details**: On the left pane, input the customer's **Age**, **Annual Income (in thousands, e.g., '50' for $50k)**, and **Spending Score (1-100)**.
+3. **Predict Segment**: Click the "Predict Segment" button.
+4. **View the Output**: The application will instantly output the customer's predicted segment category (e.g., *Prime Target Customers* or *Careful Spenders*). 
+5. **Interactive Visualization**: On the right pane, the app will dynamically render a scatter plot showing the data clusters. A large, red star (`*`) will be plotted to visually represent exactly where the new consumer sits relative to the mall's general population. The window is fully resizable so you can maximize it for a better view of the graph.
+
+---
+
+## 5. Usage & Future Application
 
 The trained K-Means model is automatically exported and saved as `kmeans_model.pkl` using `joblib`. 
 
-**To re-run the analysis and generate plots:**
+**To re-run the exploratory analysis and regenerate plots:**
 ```bash
 python main.py
 ```
 
-**To use the model in future scripts:**
+**To use the model programmatically in future scripts:**
 ```python
 import joblib
 
@@ -76,5 +95,5 @@ model = joblib.load('kmeans_model.pkl')
 
 # Predict the segment for a new customer (Age: 25, Annual Income: $50k, Spending Score: 75)
 predicted_cluster = model.predict([[25, 50, 75]])
-print(f"Customer belongs to {predicted_cluster}")
+print(f"Customer belongs to cluster index {predicted_cluster}")
 ```
