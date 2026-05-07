@@ -1,3 +1,17 @@
+---
+title: Mall Customer Segmentation
+emoji: 🛍️
+colorFrom: blue
+colorTo: indigo
+sdk: gradio
+app_file: app.py
+pinned: false
+tags:
+- scikit-learn
+- clustering
+- kmeans
+---
+
 # Mall Customer Segmentation
 
 ## Problem Statement
