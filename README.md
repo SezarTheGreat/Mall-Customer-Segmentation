@@ -3,6 +3,10 @@
 ## Problem Statement
 Understanding customer behavior is a pivotal challenge in modern retail. Without knowing who the customers are and how they spend, marketing campaigns become inefficient and generalized. The objective of this project is to analyze a dataset of mall customers and group them into distinct segments based on their age, annual income, and spending score. By identifying these target customer segments, the marketing team can formulate precise, targeted strategies to maximize profit and customer satisfaction.
 
+## Dataset Source
+The data utilized in this project is publicly available on Kaggle: 
+[Mall Customers Dataset](https://www.kaggle.com/datasets/shwetabh123/mall-customers)
+
 ## Proposed Model
 The proposed solution utilizes **K-Means Clustering**, an unsupervised machine learning algorithm. K-Means aims to partition the customers into `k` distinct clusters, where each customer belongs to the cluster with the nearest mean (centroid). By evaluating the multi-dimensional distance between customers (Age, Annual Income, and Spending Score), the algorithm effectively identifies latent patterns and segments customers with similar behavioral metrics without needing pre-labeled data.
 
