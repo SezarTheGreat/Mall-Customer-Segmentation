@@ -1,4 +1,5 @@
 from huggingface_hub import HfApi, login
+import os
 
 # Login using your token
 login(token="<YOUR_HUGGING_FACE_TOKEN>")
@@ -12,10 +13,30 @@ print(f"Creating Space {repo_id}...")
 api.create_repo(repo_id=repo_id, repo_type="space", space_sdk="gradio", exist_ok=True)
 
 print("Uploading files to the space...")
-# Upload necessary files
-api.upload_file(path_or_fileobj="app.py", path_in_repo="app.py", repo_id=repo_id, repo_type="space")
-api.upload_file(path_or_fileobj="requirements.txt", path_in_repo="requirements.txt", repo_id=repo_id, repo_type="space")
-api.upload_file(path_or_fileobj="kmeans_model.pkl", path_in_repo="kmeans_model.pkl", repo_id=repo_id, repo_type="space")
-api.upload_file(path_or_fileobj="Mall_Customers.csv", path_in_repo="Mall_Customers.csv", repo_id=repo_id, repo_type="space")
+# List of all files necessary to run the state-of-the-art segmentation Gradio app
+files_to_upload = [
+    "app.py",
+    "requirements.txt",
+    "supervised_explainability.py",
+    "feature_names.json",
+    "clv_bgf_params.pkl",
+    "clv_ggf_params.pkl",
+    "pca_pipeline.pkl",
+    "gmm_model.pkl",
+    "xgb_classifier.pkl",
+    "baseline_training_data.parquet"
+]
 
-print(f"Successfully deployed! View your app at: https://huggingface.co/spaces/{repo_id}")
+for file in files_to_upload:
+    if os.path.exists(file):
+        print(f"Uploading {file}...")
+        api.upload_file(
+            path_or_fileobj=file,
+            path_in_repo=file,
+            repo_id=repo_id,
+            repo_type="space"
+        )
+    else:
+        print(f"Warning: {file} not found locally. Skipping.")
+
+print(f"\nSuccessfully deployed! View your app at: https://huggingface.co/spaces/{repo_id}")
